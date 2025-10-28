@@ -1,6 +1,7 @@
 package com.hsf.gr3.webtodolist.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -26,6 +27,7 @@ public class User {
 
     @Column(name = "email",unique = true, nullable = false, length = 100)
     @NotBlank(message = "Xin hãy nhập email!")
+    @Email(message = "Email không hợp lệ!")
     private String email;
 
     @Column(name = "password", nullable = false, length = 100)
