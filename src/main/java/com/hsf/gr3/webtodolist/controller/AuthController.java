@@ -30,6 +30,11 @@ public class AuthController {
             return "/register";
         }
 
+        if (!user.getPassword().equals(user.getConfirmPassword())) {
+            model.addAttribute("message", "Mật khẩu xác nhận không khớp.");
+            return "/register";
+        }
+
         User registered = userService.register(user);
 
         if(registered == null) {
@@ -48,22 +53,26 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@Valid @ModelAttribute("user")  User user, BindingResult result, Model model, HttpSession httpSession) {
-        if(result.hasErrors()) {
-            return "/login";
+    public String login(@Valid @ModelAttribute("user") User user, BindingResult result,
+                        Model model, HttpSession httpSession) {
+
+        if (result.hasErrors()) {
+            result.getAllErrors().forEach(error -> System.out.println(error.getDefaultMessage()));
+            return "login";
         }
 
-        User currentUser = userService.login(user.getEmail(),  user.getPassword());
+        User currentUser = userService.login(user.getEmail(), user.getPassword());
 
-        if(currentUser == null) {
-            model.addAttribute("message", "Sai email hoặc mật khẩu.")
-            return "/login";
+        if (currentUser == null) {
+            model.addAttribute("message", "Sai email hoặc mật khẩu.");
+            return "login";
         }
 
         httpSession.setAttribute("currentUser", currentUser);
-
-        return "redirect:/index";
+        return "redirect:/";
     }
+
+
 
     @PostMapping("/logout")
     public String logout(HttpSession httpSession) {

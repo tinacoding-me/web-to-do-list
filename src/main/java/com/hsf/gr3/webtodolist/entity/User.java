@@ -21,7 +21,6 @@ public class User {
     private long id;
 
     @Column(name = "name",  nullable = false, columnDefinition = "nvarchar(40)")
-    @NotBlank(message = "Xin hãy nhập tên !")
     @Size(min = 5, max = 50, message = "Tên chỉ từ 5 đến 50 kí tự.")
     private String name;
 
@@ -37,6 +36,9 @@ public class User {
 
     @Column(name = "avatar")
     private String avatar;
+
+    @Transient // không lưu xuống database
+    private String confirmPassword;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true) //Nếu xóa user -> xóa luôn task của user đó
     private List<Task> tasks;
