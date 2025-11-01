@@ -1,0 +1,260 @@
+
+
+body {
+    margin-left: 240px;
+    overflow-x: hidden;
+    background-color: #f0f4ff;
+    font-family: 'Segoe UI', sans-serif;
+}
+.container {
+    position: absolute;
+    margin-top: 20px;
+    text-align: right;
+}
+h5 {
+    color: #0d6efd;
+    margin-right: 200px;
+}
+.signout {
+    background-color: #198754;
+    margin-right: 200px;
+}
+h2{
+    color: aquamarine;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 230px;
+    height: 100vh;
+    background: linear-gradient(180deg, #284e3b 0%, #284e3b 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+    box-shadow: 3px 0 10px rgba(0,0,0,0.1);
+}
+
+
+
+.sidebar h2 {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: 1.5px;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+
+.sidebar a {
+    color: #dbe2ef;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    width: 90%;
+    padding: 12px 0;
+    text-align: center;
+    border-radius: 8px;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+.sidebar a:hover {
+    background-color: #198754;
+    color: #fff;
+    transform: translateX(4px);
+}
+
+h1 {
+    color: darkgreen;
+    margin-left: 20px;
+    padding-top: 100px;
+    font-size: 50px;
+}
+
+.alert {
+    margin-left: 30px;
+    color: #856404;
+    padding: 30px;
+    border-radius: 8px;
+    width: 90%;
+}
+
+.button {
+    margin-left: 30px;
+    margin-top: 10px;
+    display: inline-block;
+    padding: 6px 20px;
+    border: #2f3b52;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: cyan;
+    font-size: 14px;
+    color: white;
+}
+
+.add-btn {
+    background-color: #198754;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+}
+
+.popup {
+    background: #fff;
+    border-radius: 12px;
+    padding: 30px 40px;
+    width: 450px;
+    max-width: 90%;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.3s ease;
+}
+
+.show {
+    display: flex;
+}
+
+.popup h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.form-container {
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #198754;
+    box-shadow: 0 0 3px rgba(25,135,84,0.3);
+}
+
+.cancel-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    transition: 0.2s;
+}
+
+.btn-back{
+    background-color: #198754;
+    color: white;
+}
+
+.edit-btn{
+    background-color: lightsalmon;
+    color: white;
+}
+
+.delete-btn{
+    background-color: red;
+    color: white;
+}
+
+.form-actions{
+    display: flex;
+    justify-content: flex-end; /* canh phải */
+    align-items: center;
+    gap: 5px; /* khoảng cách giữa 2 nút */
+    margin-top: 25px;
+}
+
+.project-table {
+    width: 90%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    font-size: 15px;
+}
+
+/* Tiêu đề bảng */
+.project-table thead {
+    background: #198754;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.project-table th,
+.project-table td {
+    padding: 14px 16px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Dòng xen kẽ */
+.project-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.project-table td {
+    word-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+    max-width: 250px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.project-info {
+    line-height: 1;
+    font-size: 14px;
+    margin: 20px 0 0 30px;
+    width: calc(100% - 280px);
+    background: azure;
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+}
+
+.create-date{
+    margin-left: 150px;
+}
+
+
+
+
