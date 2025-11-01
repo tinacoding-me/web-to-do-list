@@ -29,11 +29,17 @@ public class Task {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Task(String title, String description, User user) {
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    private Project project;
+
+    public Task(String title, String description, User user, Project project) {
         this.title = title;
         this.description = description;
         this.user = user;
+        this.project = project;
     }
+
     @PrePersist
     public void prePersist() {
         createdAt = LocalDateTime.now();
