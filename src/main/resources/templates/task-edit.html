@@ -1,0 +1,19 @@
+<div th:fragment="editForm">
+    <form id="editTaskForm" method="post">
+        <div class="modal-body">
+            <div class="mb-3">
+                <label class="form-label">Tên công việc:</label>
+                <input type="text" class="form-control" name="title" id="editTitle" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Mô tả:</label>
+                <textarea class="form-control" name="description" id="editDescription" rows="4" required></textarea>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+            <button type="submit" class="btn btn-success">Lưu thay đổi</button>
+        </div>
+    </form>
+</div>

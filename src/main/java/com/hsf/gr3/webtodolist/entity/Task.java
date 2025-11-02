@@ -22,8 +22,11 @@ public class Task {
     @Column(name = "description", nullable = false, columnDefinition = "nvarchar(1000)")
     private String description;
 
-    @Column(name = "created_at",  nullable = false)
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
+
+    @Column(name = "completed", nullable = false)
+    private boolean completed = false;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -45,3 +48,4 @@ public class Task {
         createdAt = LocalDateTime.now();
     }
 }
+
