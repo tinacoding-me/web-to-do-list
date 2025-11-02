@@ -52,4 +52,21 @@ public class TaskServiceImpl implements TaskService {
     public void deleteTask(Long taskId) {
         taskRepo.deleteById(taskId);
     }
+
+    @Override
+    public Task getTaskById(Long taskId) {
+        return taskRepo.findById(taskId).orElse(null);
+    }
+
+    @Override
+    public Task updateTask(Long taskId, String title, String description) {
+        Task task = taskRepo.findById(taskId).orElse(null);
+        if (task != null) {
+            task.setTitle(title);
+            task.setDescription(description);
+            taskRepo.save(task);
+        }
+        return task;
+    }
+
 }

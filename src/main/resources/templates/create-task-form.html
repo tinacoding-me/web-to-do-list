@@ -1,0 +1,38 @@
+<div th:fragment="createTaskForm">
+
+    <!-- Nút mở popup -->
+    <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addTaskModal">
+        + Thêm Task
+    </button>
+
+    <!-- Popup thêm Task -->
+    <div class="modal fade" id="addTaskModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title text-white">Thêm công việc mới</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+
+                <form th:action="@{'/tasks/add/' + ${project.id}}" method="post">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Tên công việc:</label>
+                            <input type="text" class="form-control" name="title" placeholder="Nhập tên công việc" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Mô tả:</label>
+                            <textarea class="form-control" name="description" placeholder="Nhập mô tả công việc" rows="4" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-success">Thêm Task</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

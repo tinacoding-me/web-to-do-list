@@ -1,0 +1,108 @@
+
+.task-section {
+    max-width: 95%;
+    margin: 20px auto;
+    padding-right: 30px; /* thụt nhẹ bên phải */
+}
+
+/* Tiêu đề */
+.task-section h3 {
+    text-align: center;
+    font-weight: 700;
+    color: #155724;
+    margin-bottom: 20px;
+}
+
+/* Form thêm task */
+.task-section form.mb-3 {
+    text-align: center;
+    margin: 0 auto 1rem auto;
+}
+
+/* Bảng task tổng thể */
+.task-section table {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #ffffff;
+    border-collapse: separate;
+    border-spacing: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+/* Header bảng */
+.task-section th {
+    background-color: #198754; /* xanh lá Bootstrap */
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+    vertical-align: middle;
+    padding: 12px;
+}
+
+/* Cột table */
+.task-section th,
+.task-section td {
+    text-align: center;
+    vertical-align: middle !important;
+    padding: 10px;
+}
+
+/* Hover hàng task */
+.task-section tbody tr:hover {
+    background-color: #e6f4ea;
+    transition: background-color 0.3s ease;
+}
+
+/* Task hoàn thành */
+.task-section .completed-row {
+    background-color: #f8f9fa !important;
+    opacity: 0.85;
+}
+
+/* Checkbox to, màu xanh */
+.task-section input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    accent-color: #198754;
+    transform: scale(1);
+    transition: transform 0.2s ease;
+}
+.task-section input[type="checkbox"]:hover {
+    transform: scale(1.2);
+}
+
+/* Nút thêm task */
+.task-section .btn-success {
+    background-color: #198754;
+    border-color: #157347;
+    font-weight: 600;
+}
+.task-section .btn-success:hover {
+    background-color: #157347;
+    box-shadow: 0 0 8px rgba(21, 115, 71, 0.4);
+}
+
+/* Nút xóa ẩn đi, chỉ hiện khi hover */
+.task-section tbody tr .btn-danger {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.task-section tbody tr:hover .btn-danger {
+    opacity: 1;
+}
+
+/* Task hoàn thành — gạch ngang + xám rõ */
+.text-decoration-line-through {
+    color: #6c757d !important;
+}
+
+/* Animation fade-in khi load */
+.task-section tbody tr {
+    animation: fadeIn 0.4s ease-in;
+}
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}

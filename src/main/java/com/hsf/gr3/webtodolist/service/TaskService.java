@@ -9,4 +9,6 @@ public interface TaskService {
     Task addTask(Long projectId, String title, String description, Long userId);
     void toggleStatus(Long taskId);
     void deleteTask(Long taskId);
+    Task getTaskById(Long taskId);
+    Task updateTask(Long taskId, String title, String description);
 }
