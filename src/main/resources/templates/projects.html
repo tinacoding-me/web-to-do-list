@@ -70,7 +70,7 @@
             <td th:text="${#temporals.format(p.created, 'dd/MM/yyyy HH:mm')}">31/10/2025</td>
             <td>
                 <form th:action="@{'/projects/delete/' + ${p.id}}" method="post" onsubmit="return confirmDelete(event)">
-                    <button type="submit" class="button delete-btn">Xóa</button>
+                    <button type="submit" class="button delete-btn" onclick="event.stopPropagation()">Xóa</button>
                 </form>
 
                 <script>
