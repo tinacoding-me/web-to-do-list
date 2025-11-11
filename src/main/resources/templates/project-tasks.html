@@ -69,8 +69,17 @@
 
         <div th:replace="create-task-form :: createTaskForm"></div>
 
-        <div th:replace="task-list :: taskList"></div>
+        <form id="form-task-order" method="post"
+              th:action="@{/tasks/project/{projectId}/save-order(projectId=${project.id})}">
 
+            <div class="my-3">
+                <button type="button" id="edit-order-btn" class="btn btn-outline-primary btn-sm">Sửa thứ tự</button>
+                <button type="submit" id="save-order-btn" class="btn btn-primary btn-sm" style="display:none;">Lưu thứ tự</button>
+            </div>
+
+            <div th:replace="task-list :: taskList"></div>
+
+        </form>
     </div>
 
     <!-- ==================== Edit Task Popup ==================== -->
@@ -92,6 +101,8 @@
 
 <!-- Bootstrap & JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+<script th:src="@{/js/dragdrop.js}"></script>
 <script>
     // Mở popup sửa Task
     function openEditModal(button) {
@@ -99,9 +110,11 @@
         const title = button.getAttribute("data-title");
         const desc = button.getAttribute("data-description");
         const projectId = button.getAttribute("data-project");
+        const deadline = button.getAttribute("data-deadline");
 
         document.getElementById("editTitle").value = title;
         document.getElementById("editDescription").value = desc;
+        document.getElementById("editDeadline").value = deadline;
         document.getElementById("editTaskForm").action = `/tasks/update/${id}/${projectId}`;
 
         const modal = new bootstrap.Modal(document.getElementById("editTaskModal"));

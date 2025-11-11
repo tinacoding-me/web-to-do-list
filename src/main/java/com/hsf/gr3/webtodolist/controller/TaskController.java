@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @Controller
 @RequestMapping("/tasks")
 public class TaskController {
@@ -17,11 +20,11 @@ public class TaskController {
     @PostMapping("/add/{projectId}")
     public String addTask(@PathVariable Long projectId,
                           @RequestParam String title,
-                          @RequestParam String description,
+                          @RequestParam String description,@RequestParam LocalDate deadline,
                           HttpSession session) {
         User user = (User) session.getAttribute("currentUser");
         if (user == null) return "redirect:/";
-        taskService.addTask(projectId, title, description, user.getId());
+        taskService.addTask(projectId, title, description, user.getId(), deadline);
         return "redirect:/projects/" + projectId;
     }
 
@@ -44,12 +47,22 @@ public class TaskController {
                              @PathVariable Long projectId,
                              @RequestParam String title,
                              @RequestParam String description,
+                             @RequestParam LocalDate deadline,
                              HttpSession session) {
         User user = (User) session.getAttribute("currentUser");
         if (user == null) return "redirect:/";
 
-        taskService.updateTask(taskId, title, description);
+        taskService.updateTask(taskId, title, description,deadline);
         return "redirect:/projects/" + projectId;
     }
 
+    @PostMapping("/project/{projectId}/save-order")
+    public String saveOrder(@PathVariable Long projectId, @RequestParam("taskOrder")List<Long> taskIds, HttpSession session) {
+    User user = (User) session.getAttribute("currentUser");
+    if (user == null) return "redirect:/";
+
+    taskService.saveTaskOrder(taskIds);
+    return "redirect:/projects/" + projectId;
+
+    }
 }
