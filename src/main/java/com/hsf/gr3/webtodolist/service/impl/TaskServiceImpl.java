@@ -1,5 +1,13 @@
 package com.hsf.gr3.webtodolist.service.impl;
 
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.hsf.gr3.webtodolist.entity.Project;
 import com.hsf.gr3.webtodolist.entity.Task;
 import com.hsf.gr3.webtodolist.entity.User;
@@ -7,12 +15,8 @@ import com.hsf.gr3.webtodolist.repository.ProjectRepo;
 import com.hsf.gr3.webtodolist.repository.TaskRepo;
 import com.hsf.gr3.webtodolist.repository.UserRepo;
 import com.hsf.gr3.webtodolist.service.TaskService;
-import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.util.List;
+import jakarta.transaction.Transactional;
 
 @Service
 public class TaskServiceImpl implements TaskService {
@@ -89,6 +93,40 @@ public class TaskServiceImpl implements TaskService {
                 taskRepo.save(task);
             }
         }
+    }
+
+    // Module 6: Implementation of filtering and statistics methods
+    @Override
+    public List<Task> getTasksByUserAndDeadline(Long userId, LocalDate deadline) {
+        User user = userRepo.findById(userId).orElse(null);
+        if (user == null) return List.of();
+        return taskRepo.findByUserAndDeadlineOrderByPositionAsc(user, deadline);
+    }
+
+    @Override
+    public List<Task> getTasksByUserAndDeadlineRange(Long userId, LocalDate start, LocalDate end) {
+        User user = userRepo.findById(userId).orElse(null);
+        if (user == null) return List.of();
+        return taskRepo.findByUserAndDeadlineBetweenOrderByPositionAsc(user, start, end);
+    }
+
+    @Override
+    public Map<String, Long> getTaskStatistics(Long userId) {
+        User user = userRepo.findById(userId).orElse(null);
+        if (user == null) {
+            Map<String, Long> emptyStats = new HashMap<>();
+            emptyStats.put("completedCount", 0L);
+            emptyStats.put("totalCount", 0L);
+            return emptyStats;
+        }
+        
+        long completedCount = taskRepo.countByUserAndCompleted(user, true);
+        long totalCount = taskRepo.countByUser(user);
+        
+        Map<String, Long> statistics = new HashMap<>();
+        statistics.put("completedCount", completedCount);
+        statistics.put("totalCount", totalCount);
+        return statistics;
     }
 
 }

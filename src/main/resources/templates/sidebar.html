@@ -10,8 +10,13 @@
 <body>
     <div class="sidebar">
         <h2>TO DO WEB</h2>
-        <a href="/">Trang chủ</a>
-        <a href="/projects">Quản lý dự án</a>
+        <a th:href="@{/}">Trang chủ</a>
+        <a th:href="@{/projects}">Quản lý dự án</a>
+        <hr style="border-color: rgba(255,255,255,0.2); margin: 10px 0;">
+        <a th:href="@{/tasks/today}">Hôm nay</a>
+        <a th:href="@{/tasks/upcoming}">Sắp tới</a>
+        <a th:href="@{/report}">Báo cáo</a>
+        <hr style="border-color: rgba(255,255,255,0.2); margin: 10px 0;">
         <a href="#">Tài khoản</a>
     </div>
 </body>
