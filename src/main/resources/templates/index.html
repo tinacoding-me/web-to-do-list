@@ -9,8 +9,9 @@
 </head>
 <body>
 <div th:insert="~{sidebar.html}"></div>
-<div class="container">
-    <h5>Xin chào <span th:text="${user.email}">user@example.com</span>!</h5>
+<div class="container box-index">
+    <h5>Xin chào <span th:text="${user.name}">user@example.com</span>!</h5>
+
     <form action="/logout" method="post">
         <button class="signout button" type="submit">Đăng xuất</button>
     </form>

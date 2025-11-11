@@ -255,6 +255,149 @@ h1 {
     margin-left: 150px;
 }
 
+.profile-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.signout {
+    margin-top: 10px;
+}
+
+/* ================= Profile Page ================= */
+
+/* Avatar */
+.profile-box .avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #198754;
+    color: white;
+    font-size: 50px;
+    line-height: 120px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border: 3px solid #fff;
+}
+
+/* Profile Box */
+.profile-box {
+    width: calc(100% - 280px); /* để tránh bị sidebar che */
+    margin: 30px auto; /* khoảng cách từ sidebar */
+    background: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* Title */
+.profile-box h2 {
+    color: #198754;
+    font-size: 28px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Profile info labels */
+.profile-info label {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Profile info values */
+.profile-info div {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Form group */
+.profile-box .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Buttons */
+.profile-box .btn-primary {
+    background-color: #198754;
+    color: white;
+    padding: 10px 20px;
+    font-size: 15px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.profile-box .btn-primary:hover {
+    background-color: #145c36;
+}
+
+.profile-box .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    font-size: 15px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.profile-box .btn-secondary:hover {
+    background-color: #565e64;
+}
+
+.profile-box .btn-danger {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    font-size: 15px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.profile-box .btn-danger:hover {
+    background-color: #a71d2a;
+}
+
+/* Form actions */
+.profile-box .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Change password form */
+#change-pass-form {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto 0;
+}
+/* Ẩn các phần tử có class hidden */
+.hidden {
+    display: none !important;
+}
+
+.box-index {
+    margin-bottom: 20px
+;
+}
+
 
 
 

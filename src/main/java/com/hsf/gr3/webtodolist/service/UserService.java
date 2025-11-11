@@ -8,5 +8,7 @@ public interface UserService {
 
     public User register(User user); //Đăng kí
 
-    public User login(String email, String password); //Đăng nhập
+    public User login(String email, String password);
+
+    public void updateUser(User user);//Đăng nhập
 }
