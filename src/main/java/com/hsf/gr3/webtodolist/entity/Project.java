@@ -30,6 +30,7 @@ public class Project {
     private LocalDateTime created;
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("position ASC")
     private List<Task> tasks;
 
     @ManyToOne

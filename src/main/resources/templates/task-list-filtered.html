@@ -1,8 +1,9 @@
-<div th:fragment="taskList">
+<div th:fragment="taskListFiltered">
     <table class="table table-striped align-middle">
         <thead>
         <tr>
             <th>#</th>
+            <th>Dự án</th>
             <th>Tên Task</th>
             <th>Mô tả</th>
             <th>Trạng thái</th>
@@ -11,9 +12,12 @@
         </tr>
         </thead>
         <tbody id="task-list-tbody">
-        <tr th:each="task, iterStat : ${project.tasks}" th:data-task-id="${task.id}"
+        <tr th:each="task, iterStat : ${taskList}" th:data-task-id="${task.id}"
             th:classappend="${task.completed} ? 'completed-row' : ''">
             <td th:text="${iterStat.count}"></td>
+            <td>
+                <a th:href="@{'/projects/' + ${task.project.id}}" th:text="${task.project.name}"></a>
+            </td>
             <td th:text="${task.title}"
                 th:classappend="${task.completed} ? 'text-decoration-line-through text-muted' : ''"></td>
             <td th:text="${task.description}"
@@ -22,25 +26,25 @@
                 <input type="checkbox"
                        class="form-check-input"
                        th:checked="${task.completed}"
-                       th:attr="data-toggle-url=@{'/tasks/toggle/' + ${task.id} + '/' + ${project.id}}"
+                       th:attr="data-toggle-url=@{'/tasks/toggle/' + ${task.id} + '/' + ${task.project.id}}"
                        onchange="window.location.href = this.getAttribute('data-toggle-url');">
             </td>
-            <td th:text="${task.deadline}"
+            <td th:text="${#temporals.format(task.deadline, 'dd/MM/yyyy')}"
                 th:classappend="${task.completed} ? 'text-decoration-line-through text-muted' : ''"></td>
             <td>
-                <a th:href="@{'/tasks/' + ${task.id}}" class="btn btn-info btn-sm me-1">Xem</a>
                 <a href="#"
                    class="btn btn-warning btn-sm me-1"
-                   th:attr="data-id=${task.id}, data-title=${task.title}, data-description=${task.description}, data-project=${project.id}, data-deadline=${task.deadline}"
+                   th:attr="data-id=${task.id}, data-title=${task.title}, data-description=${task.description}, data-project=${task.project.id}, data-deadline=${#temporals.format(task.deadline, 'yyyy-MM-dd')}"
                    onclick="openEditModal(this)">Sửa</a>
-                <a th:href="@{'/tasks/delete/' + ${task.id} + '/' + ${project.id}}"
+                <a th:href="@{'/tasks/delete/' + ${task.id} + '/' + ${task.project.id}}"
                    class="btn btn-danger btn-sm"
                    onclick="return confirm('Bạn có chắc muốn xóa công việc này không?');">Xóa</a>
             </td>
         </tr>
-        <tr th:if="${#lists.isEmpty(project.tasks)}">
-            <td colspan="6" class="text-center text-muted">Chưa có công việc nào trong dự án này.</td>
+        <tr th:if="${#lists.isEmpty(taskList)}">
+            <td colspan="7" class="text-center text-muted">Chưa có công việc nào.</td>
         </tr>
         </tbody>
     </table>
 </div>
+
