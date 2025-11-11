@@ -19,6 +19,12 @@ public class Task {
     @Column(name = "title", nullable = false, columnDefinition = "nvarchar(50)")
     private String title;
 
+    @Column(name = "position", nullable = false)
+    private Integer position;
+
+    @Column(name = "deadline", nullable = false)
+    private LocalDate deadline;
+
     @Column(name = "description", nullable = false, columnDefinition = "nvarchar(1000)")
     private String description;
 
@@ -36,11 +42,13 @@ public class Task {
     @JoinColumn(name = "project_id")
     private Project project;
 
-    public Task(String title, String description, User user, Project project) {
+    public Task(String title, String description, User user, Project project, Integer position, LocalDate deadline) {
         this.title = title;
         this.description = description;
         this.user = user;
         this.project = project;
+        this.position = position;
+        this.deadline = deadline;
     }
 
     @PrePersist
