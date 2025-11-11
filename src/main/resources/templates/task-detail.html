@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Details</title>
+    <link rel="stylesheet" href="/css/task-details.css">
+</head>
+<body>
+<div th:replace="~{sidebar :: sidebar}"></div>
+
+<div class="main-content">
+    <div class="container">
+        <h1 th:text="${task.title}">Task Title</h1>
+        <p><strong>Description:</strong> <span th:text="${task.description}">Task description</span></p>
+        <p><strong>Status:</strong> <span th:text="${task.completed ? 'Completed' : 'Incomplete'}">Task status</span></p>
+        <p><strong>Project:</strong> <a th:href="@{/projects/{id}(id=${task.project.id})}" th:text="${task.project.name}">Project Name</a></p>
+
+        <form th:action="@{/tasks/toggle/{taskId}/{projectId}(taskId=${task.id}, projectId=${task.project.id})}" method="get">
+            <button type="submit" th:text="${task.completed ? 'Mark as Incomplete' : 'Mark as Complete'}">Toggle Status</button>
+        </form>
+        <a th:href="@{/projects/{id}(id=${task.project.id})}">Back to Project</a>
+    </div>
+</div>
+</body>
+</html>

@@ -64,17 +64,35 @@ public class TaskController {
         return "redirect:/projects/" + projectId;
     }
 
-    @PostMapping("/project/{projectId}/save-order")
-    public String saveOrder(@PathVariable Long projectId, @RequestParam("taskOrder")List<Long> taskIds, HttpSession session) {
-    User user = (User) session.getAttribute("currentUser");
-    if (user == null) return "redirect:/";
+    // Phương thức từ nhánh 'task4'
+    @GetMapping("/{taskId}")
+    public String viewTask(@PathVariable Long taskId, Model model, HttpSession session) {
+        User user = (User) session.getAttribute("currentUser");
+        if (user == null) {
+            return "redirect:/login";
+        }
 
-    taskService.saveTaskOrder(taskIds);
-    return "redirect:/projects/" + projectId;
+        Task task = taskService.getTaskById(taskId);
+        if (task == null || task.getProject().getUser().getId() != user.getId()) {
+            return "redirect:/projects";
+        }
 
+        model.addAttribute("task", task);
+        model.addAttribute("user", user);
+        return "task-detail";
     }
 
-    // Module 6: Filter endpoints
+    // Phương thức từ nhánh 'main'
+    @PostMapping("/project/{projectId}/save-order")
+    public String saveOrder(@PathVariable Long projectId, @RequestParam("taskOrder")List<Long> taskIds, HttpSession session) {
+        User user = (User) session.getAttribute("currentUser");
+        if (user == null) return "redirect:/";
+
+        taskService.saveTaskOrder(taskIds);
+        return "redirect:/projects/" + projectId;
+    }
+
+    // Module 6: Filter endpoints - Phương thức từ nhánh 'main'
     @GetMapping("/today")
     public String getTasksToday(HttpSession session, Model model) {
         User user = (User) session.getAttribute("currentUser");
@@ -91,6 +109,7 @@ public class TaskController {
         return "tasks-filtered";
     }
 
+    // Module 6: Filter endpoints - Phương thức từ nhánh 'main'
     @GetMapping("/upcoming")
     public String getTasksUpcoming(HttpSession session, Model model) {
         User user = (User) session.getAttribute("currentUser");
